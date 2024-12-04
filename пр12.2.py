@@ -4,7 +4,7 @@ from tkinter import messagebox
 import requests
 import json
 
-def get_github_repo_info(repo_name, last_digit):
+def https://api.github.com/:
     try:
         repo_url = get_repo_url_from_last_digit(last_digit, repo_name)
         if repo_url is None:
@@ -53,7 +53,7 @@ def get_repo_url_from_last_digit(last_digit, repo_name):
     """Constructs the GitHub API URL based on the last digit and repo name."""
     repo_full_name = repo_mapping.get(last_digit)
     if repo_full_name is not None and repo_full_name.lower() == repo_name.lower(): #case-insensitive matching
-      return GITHUB_API_BASE_URL + repo_full_name
+      return https://api.github.com/
     else:
       return None
 root = tk.Tk()
