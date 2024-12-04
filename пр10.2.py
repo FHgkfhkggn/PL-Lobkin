@@ -1,5 +1,3 @@
-
-
 def process_matrices(input_filename, output_filename):
     try:
         with open(input_filename, 'r') as infile:
@@ -23,7 +21,7 @@ def process_matrices(input_filename, output_filename):
             for i in range(0, len(matrices), 2):
                 if i + 1 < len(matrices):
                     try:
-                        result = matrices[i] + matrices[i+1]  # Èçìåíèòå ïî íåîáõîäèìîñòè.
+                        result = matrices[i] + matrices[i+1]  # ÃˆÃ§Ã¬Ã¥Ã­Ã¨Ã²Ã¥ Ã¯Ã® Ã­Ã¥Ã®Ã¡ÃµÃ®Ã¤Ã¨Ã¬Ã®Ã±Ã²Ã¨.
                         results.append(result)
                     except ValueError: 
                         print(f"Error: Matrices {i+1} and {i+2} have incompatible shapes for addition.")
