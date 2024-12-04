@@ -9,6 +9,6 @@ def calculate_expression(x, n):
     else:
         return (x ** n) / factorial(n)
 x = int(input("Введите натуральное число X: "))
-y = int(input("Введите натуральное число Y: "))
-result = calculate_expression(x, y)
+n = int(input("Введите натуральное число n: "))
+result = calculate_expression(x, n)
 print(f"Результат выражения {x}^{n}/{n}! равен: {result}")
