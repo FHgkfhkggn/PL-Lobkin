@@ -1,0 +1,18 @@
+
+
+
+red = 0
+w = 0
+S = int(input('¬вод: '))
+A = [[random.randrange(10) for i in range(S)] for j in range(S)]
+for i in range(N):
+    for j in range(i+1, N):
+        if A[i][j] <= 0:
+           continue
+        if A[i][j] > 0:
+            pol += 1
+            w += A[i][j]
+
+print('—умма:', w)
+print('„исло:', red)
+
