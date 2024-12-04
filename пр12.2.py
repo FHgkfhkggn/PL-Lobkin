@@ -3,17 +3,14 @@ from tkinter import ttk
 from tkinter import messagebox
 import requests
 import json
-
-def https://api.github.com/:
+def GITHUB_API_BASE_URL
     try:
         repo_url = get_repo_url_from_last_digit(last_digit, repo_name)
         if repo_url is None:
             return f"Repository not found for last digit {last_digit} and name {repo_name}"
-        
         response = requests.get(repo_url)
         response.raise_for_status()
         data = response.json()
-        
         repo_info = {
             'company': data.get('owner', {}).get('login', None),
             'created_at': data.get('created_at', None),
@@ -27,9 +24,7 @@ def https://api.github.com/:
         return f"Error fetching data: {e}"
     except KeyError as e:
         return f"Error parsing JSON response: Missing key {e}"
-
 def write_to_file(repo_info, filename="github_repo_info.json"):
-    """Writes the repository information to a JSON file."""
     try:
         with open(filename, 'w') as outfile:
             json.dump(repo_info, outfile, indent=4)
@@ -53,13 +48,12 @@ def get_repo_url_from_last_digit(last_digit, repo_name):
     """Constructs the GitHub API URL based on the last digit and repo name."""
     repo_full_name = repo_mapping.get(last_digit)
     if repo_full_name is not None and repo_full_name.lower() == repo_name.lower(): #case-insensitive matching
-      return https://api.github.com/
+      return GITHUB_API_BASE_URL
     else:
       return None
 root = tk.Tk()
 root.title("GitHub Repo Info")
 root.mainloop()
-
 root = tk.Tk()
 root.title("GitHub Repo Info")
 root.mainloop()
