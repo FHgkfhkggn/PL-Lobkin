@@ -1,6 +1,8 @@
-
-
-
+import tkinter as tk
+from tkinter import ttk
+from tkinter import messagebox
+import requests
+import json
 repo_mapping = {
     0: "microsoft/vscode",
     1: "facebook/react",
@@ -17,11 +19,10 @@ repo_mapping = {
 GITHUB_API_BASE_URL = "https://api.github.com/repos/"
 
 def get_github_repo_info(repo_name, last_digit):
-    """Получение и обработка данных JSON для указанного репозитория GitHub."""
     try:
         repo_url = get_repo_url_from_last_digit(last_digit, repo_name)
         if repo_url is None:
-            return f"Репозиторий не найден для последней цифры {last_digit} и имени {repo_name}"
+            return f"Repository not found for last digit {last_digit} and name {repo_name}"
         
         response = requests.get(repo_url)
         response.raise_for_status()
@@ -37,42 +38,41 @@ def get_github_repo_info(repo_name, last_digit):
         }
         return repo_info
     except requests.exceptions.RequestException as e:
-        return f"Ошибка при получении данных: {e}"
+        return f"Error fetching data: {e}"
     except KeyError as e:
-        return f"Ошибка при разборе JSON-ответа: Отсутствует ключ {e}"
+        return f"Error parsing JSON response: Missing key {e}"
 
 def write_to_file(repo_info, filename="github_repo_info.json"):
-    """Запись информации о репозитории в файл JSON."""
+    """Writes the repository information to a JSON file."""
     try:
         with open(filename, 'w') as outfile:
             json.dump(repo_info, outfile, indent=4)
-        print(f"Данные записаны в файл '{filename}'")
+        print(f"Data written to '{filename}'")
     except Exception as e:
-        print(f"Ошибка записи в файл: {e}")
-
+        print(f"Error writing to file: {e}")
 def process_repo():
-    """Обработка нажатия кнопки, получение данных о репозитории и запись в файл."""
+    """Handles button click, gets repo data, and writes to file."""
     repo_name = repo_entry.get()
     last_digit_str = last_digit_entry.get()
-    
     try:
         last_digit = int(last_digit_str)
         if not 0 <= last_digit <= 9:
-            raise ValueError("Последняя цифра должна быть от 0 до 9")
-        
+            raise ValueError("Last digit must be between 0 and 9")
         repo_data = get_github_repo_info(repo_name, last_digit)
         write_to_file(repo_data)
-        messagebox.showinfo("Успех", "Данные о репозитории записаны в файл.")
+        messagebox.showinfo("Success", "Repository data written to file.")
     except ValueError as e:
-        messagebox.showerror("Ошибка", f"Неверный ввод: {e}")
-
+        messagebox.showerror("Error", f"Invalid input: {e}")
 def get_repo_url_from_last_digit(last_digit, repo_name):
-    """Формирование URL API GitHub на основе последней цифры и имени репозитория."""
+    """Constructs the GitHub API URL based on the last digit and repo name."""
     repo_full_name = repo_mapping.get(last_digit)
-    if repo_full_name is not None and repo_full_name.lower() == repo_name.lower():
-        return GITHUB_API_BASE_URL + repo_full_name
+    if repo_full_name is not None and repo_full_name.lower() == repo_name.lower(): #case-insensitive matching
+      return GITHUB_API_BASE_URL + repo_full_name
     else:
-        return None
+      return None
+root = tk.Tk()
+root.title("GitHub Repo Info")
+root.mainloop()
 
 root = tk.Tk()
 root.title("GitHub Repo Info")
