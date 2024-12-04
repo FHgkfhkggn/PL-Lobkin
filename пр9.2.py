@@ -1,5 +1,5 @@
 from math import 
-print('№1')
+print('1')
 def f(x,n):
 return (x**n)/factorial(n)
 x = int(input())
