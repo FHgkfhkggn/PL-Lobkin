@@ -1,17 +1,18 @@
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+def calculate_expression(x, n):
+    if n == 0:
+        return 1
+    else:
+        return (x ** n) / factorial(n)
 
 
-def find_max_recursive():
-    try:
-        num = int(input())
-        if num == 0:
-            return 0 
-        else:
-            max_so_far = find_max_recursive() # Recursive call
-            return max(num, max_so_far) if max_so_far != 0 else num 
-    except ValueError:
-        print("Invalid input. Please enter integers only.")
-        return find_max_recursive() 
+x = int(input("Введите натуральное число X: "))
+y = int(input("Введите натуральное число Y: "))
 
-max_value = find_max_recursive()
-if max_value != 0:
-    print("The maximum value is:", max_value)
+result = calculate_expression(x, y)
+print(f"Результат выражения {x}^{n}/{n}! равен: {result}")
