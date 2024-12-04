@@ -1,13 +1,16 @@
-a=5
-H=[
-    [4, 6, 7, 8, 9],
-    [11, 12, 14, 15, 16],
-    [17, 19, 20, 22, 24],
-    [25, 26, 27, 28, 30],
-    [33, 35, 38, 40, 42]
-    ]
-for i in range(n):
-    H[i][0], H[i][-1] = H[i][-1], H[i][0]
-for row in H:
-    print(' '.join(map(str, row)))
+import random
+pol = 0
+s = 0
+N = int(input('Ввод: '))
+A = [[random.randrange(10) for i in range(N)] for j in range(N)]
+for i in range(N):
+    for j in range(i+1, N):
+        if A[i][j] <= 0:
+           continue
+        if A[i][j] > 0:
+            pol += 1
+            s += A[i][j]
+
+print('Сумма:', s)
+print('Число:', pol)
 
