@@ -3,20 +3,6 @@ from tkinter import ttk
 from tkinter import messagebox
 import requests
 import json
-repo_mapping = {
-    0: "microsoft/vscode",
-    1: "facebook/react",
-    2: "tensorflow/tensorflow",
-    3: "vuejs/vue",
-    4: "airbnb/javascript",
-    5: "torvalds/linux",
-    6: "laravel/laravel",
-    7: "flutter/flutter",
-    8: "nodejs/node",
-    9: "apache/incubator-dubbo"
-}
-
-GITHUB_API_BASE_URL = "https://api.github.com/repos/"
 
 def get_github_repo_info(repo_name, last_digit):
     try:
